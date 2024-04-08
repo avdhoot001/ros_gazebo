@@ -1,0 +1,45 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro $(find rover_description)/urdf/rover.xacro"/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model rover"/>
+
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find rover_description)/worlds/mazemed.world"/> 
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+
+</launch> 
+<!--
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro $(find rover_description)/urdf/rover.xacro"/>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model rover"/>
+  <param name="maze" command="$(find xacro)/xacro $(find rover_description)/urdf/maze.xacro"/>
+  
+  <node name="spawn_urdf_maze" pkg="gazebo_ros" type="spawn_model" args="-param maze -urdf -model maze"/>
+
+  <param name="cam" command="$(find xacro)/xacro $(find rover_description)/urdf/model.sdf"/>
+  
+  <node name="spawn_urdf_cam" pkg="gazebo_ros" type="spawn_model" args="-param cam -sdf -model camera"/>
+
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+</launch> -->
+
+
+
+
